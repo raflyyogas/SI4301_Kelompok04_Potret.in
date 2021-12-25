@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('Rafly_home',[
+        "title" => "Home"
+    ]);
 });
+Route::resource('vaccine',Rafly_vaccinessControllers::class,);
+Route::resource('patient',Rafly_patientsControllers::class,);
+Route::get('/patient/{vaccine}/create','Rafly_patientsControllers@create');
