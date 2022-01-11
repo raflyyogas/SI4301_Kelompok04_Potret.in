@@ -14,17 +14,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('base');
+    return view('data');
 });
 
 Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/regis', function () {
-    return view('regis');
+// Route::get('/regis', function () {
+//     return view('register');
+// });
+
+Route::get('/profile', function(){
+    return view('');
 });
 
+Route::resource('/register', registercontroller::class);
+// Route::resource('/regis', customerController::class);
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');

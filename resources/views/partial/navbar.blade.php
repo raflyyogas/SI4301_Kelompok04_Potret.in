@@ -8,8 +8,9 @@
     <input class="form-control form-control-dark w-100 me-3" type="text" placeholder="Search" aria-label="Search">
     <div class="navbar-nav">
       <div class="nav-item text-nowrap me-3">
+        {{-- if --}}
         <a href="/login" type="button" class="btn btn-outline-secondary">Login</a>
-        <a href="/regis" type="button" class="btn btn-outline-secondary">Register</a>
+        <a href="/register" type="button" class="btn btn-outline-secondary">Register</a>
       </div>
     </div>
 </header>
