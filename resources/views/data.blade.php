@@ -1,15 +1,32 @@
 @extends('base')
 @section('content')
 
-  <div class="container mt-4">
-    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-      <div class="col-md-5 p-lg-5 mx-auto my-5">
-        <h1 class="display-4 fw-normal">POTRET</h1>
-        <p class="lead fw-normal">We create a moment</p>
-        <a class="btn btn-outline-secondary" href="#">Video soon</a>
+  <div class="container mt-4" >
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
-      <div class="product-device shadow-sm d-none d-md-block"></div>
-      <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{{ asset('img/internal/logo.png') }}" class="d-block w-100" alt="Banner pertama" width="100px" height="250px">
+        </div>
+        <div class="carousel-item">
+          <img src="{{ asset('img/internal/logo.png') }}" class="d-block w-100" alt="Banner kedua" width="100px" height="250px">
+        </div>
+        <div class="carousel-item">
+          <img src="{{ asset('img/internal/logo.png') }}" class="d-block w-100" alt="Banner ketiga" width="100px" height="250px">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
   </div>
   <div class="container mt-3 mb-3">
