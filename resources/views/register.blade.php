@@ -22,14 +22,14 @@
           <div class="row align-items-center justify-content-center">
             <div class="col-md-7">
               <h3>Daftar <strong>Potret.In</strong></h3>
-              <p class="mb-4">Make a momment with us</p>
+              <p class="mb-4">Make a moment with us</p>
               @if (session('TidakSama'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                   {{ (session('TidakSama')) }}
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
               @endif
-              <form action="/register" method="post" enctype="multipart/form-data">
+              <form action="{{ route('register') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group first">
                   <label for="username">username</label>

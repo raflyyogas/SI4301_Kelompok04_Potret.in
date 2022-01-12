@@ -22,26 +22,42 @@
           <div class="row align-items-center justify-content-center">
             <div class="col-md-7">
               <h3>Masuk <strong>Potret.In</strong></h3>
-              <p class="mb-4">Make a momment with us.</p>
+              <p class="mb-4">Make a moment with us.</p>
               @if (session('BerhasilRegist'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                   {{ (session('BerhasilRegist')) }}
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
               @endif
-              <form action="#" method="post">
+
+              @if (session('failed'))
+                <div class="alert alert-failed alert-dismissible fade show" role="alert">
+                  {{ (session('failed')) }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              @endif
+
+              @if (session('wrong'))
+                <div class="alert alert-failed alert-dismissible fade show" role="alert">
+                  {{ (session('wrong')) }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              @endif
+
+              <form action="{{ route('login') }}" method="post">
+                @csrf
                 <div class="form-group first">
                   <label for="username">Username</label>
-                  <input type="text" class="form-control" placeholder="Masukkan Email Anda" id="username" />
+                  <input type="text" class="form-control" placeholder="Masukkan Username Anda" id="username" name="username"/>
                 </div>
                 <div class="form-group last mb-3">
                   <label for="password">Password</label>
-                  <input type="password" class="form-control" placeholder="Password Anda" id="password" />
+                  <input type="password" class="form-control" placeholder="Password Anda" id="password" name="password" />
                 </div>
 
                 <div class="d-flex mb-5 align-items-center">
-                  <label class="control control--checkbox mb-0"
-                    ><span class="caption">Remember me</span>
+                  <label class="control control--checkbox mb-0">
+                    <span class="caption">Remember me</span>
                     <input type="checkbox" checked="checked" />
                     <div class="control__indicator"></div>
                   </label>
