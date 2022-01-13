@@ -10,11 +10,11 @@ class jasa extends Model
     protected $table = 'jasa';
     
     public function kategori(){
-        return $this->hasMany('App\Models\kategori');
+        return $this->belongsTo('App\Models\kategori');
     }
 
     public function transaksi(){
-        return $this->belongsToMany('App\Models\transaksi');
+        return $this->belongsTo('App\Models\transaksi');
     }
 
     use HasFactory;

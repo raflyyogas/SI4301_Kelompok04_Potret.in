@@ -9,7 +9,7 @@ class kategori extends Model
 {
     protected $table = 'kategori';
     public function jasa(){
-        return $this->belongsTo('App\Models\jasa');
+        return $this->hasMany('App\Models\jasa');
     }
 
     use HasFactory;

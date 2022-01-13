@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\customerController;
+use App\Http\Controllers\vendorController;
+use App\Http\Controllers\jasaController;
+use App\Http\Controllers\transaksiController;
 use Illuminate\Support\Facades\Route;
 use App\Models\customer;
+use App\Models\jasa;
 use App\Models\kategori;
 use App\Models\vendor;
 use App\Models\transaksi;
@@ -28,6 +32,22 @@ Route::get('/', function () {
     }
 });
 
+Route::get('/vendor',function(){
+    if (session('vendor')){
+        $id = session('vendorid');
+        $vendor = vendor::where('id',$id)->first();
+        $jasa = jasa::all();
+        return view('vendor.index',compact('vendor','jasa'));
+    }else{
+        return view('vendor.index');
+    }
+});
+
+
+Route::get('/vendor/login',[vendorController::class,'loginpage'])->name('Vendorlogin');
+Route::post('/vendor/login',[vendorController::class,'vendorlogin'])->name('vendorlog');
+Route::post('/vendor/asik',[vendorController::class,'vendorregister'])->name('vendorregis');
+Route::get('/vendor/asik',[vendorController::class,'registerpage'])->name('metalmen');
 
 //For Profile
 Route::get('/profile',function(){
@@ -39,9 +59,7 @@ Route::get('/profile',function(){
         return view('data');
     }
 });
-// Route::get('/profile/{cust}/edit','customerController@edit');
 Route::post('/profile',[customerController::class,'update'])->name('update');
-
 
 //For Login and Register Page
 Route::get('registerpage',[customerController::class,'registerpage'])->name('registerpage');

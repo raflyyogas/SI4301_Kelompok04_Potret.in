@@ -9,14 +9,14 @@
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
       <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="{{ asset('img/internal/gambar.jpg') }}" class="d-block w-100" alt="Banner pertama" width="100px" height="250px">
+        <div class="carousel-item active ">
+          <img src="{{ asset('img/internal/gambar.jpg') }}" class="rounded d-block w-100" alt="Banner pertama" width="100px" height="300px">
         </div>
-        <div class="carousel-item">
-          <img src="{{ asset('img/internal/gambar1.jpg') }}" class="d-block w-100" alt="Banner kedua" width="100px" height="250px">
+        <div class="carousel-item ">
+          <img src="{{ asset('img/internal/gambar1.jpg') }}" class="rounded d-block w-100" alt="Banner kedua" width="100px" height="300px">
         </div>
-        <div class="carousel-item">
-          <img src="{{ asset('img/internal/gambar2.jpg') }}" class="d-block w-100" alt="Banner ketiga" width="100px" height="250px">
+        <div class="carousel-item rounded">
+          <img src="{{ asset('img/internal/gambar2.jpg') }}" class="rounded d-block w-100" alt="Banner ketiga" width="100px" height="300px">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
