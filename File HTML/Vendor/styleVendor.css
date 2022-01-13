@@ -305,3 +305,17 @@ body {
       }
     }
   }
+.user{
+  width: 150px;
+  margin-left: 10px;
+}
+.detail{
+  text-align: justify;
+  width: 700px;
+  font-size: 10px;
+  margin-left: -117px;
+  margin-top: 30px;
+}
+.namaVendor{
+  margin-top: -10px;
+}
