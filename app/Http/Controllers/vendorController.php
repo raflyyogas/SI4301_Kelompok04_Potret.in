@@ -44,7 +44,22 @@ class vendorController extends Controller
             return redirect('/vendor/login')->with('failed','Email atau Password salah!');
         }
     }
-    public function jasa($id){
 
+    public function CreateJasa(Request $request){
+        $Name = $request->image->getClientOriginalName() . '-' . time()
+        . '.' . $request->image->extension();
+        $request->image->move(public_path('img/imgvendor'),$Name);
+
+        jasa::create([
+            'namaJasa' => $request -> nama,
+            'deskripsi' => $request -> deskripsi,
+            'gambar' => $Name,
+            'harga' => $request -> harga,
+            'lokasi' => $Name,
+            'vendor' => $request -> vendor,
+            'kategori' => $request -> kategori,
+        ]);
+
+        return redirect('/vendor');
     }
 }

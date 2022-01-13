@@ -43,11 +43,22 @@ Route::get('/vendor',function(){
     }
 });
 
+Route::get('/vendor/create',function(){
+    if (session('vendor')){
+        $id = session('vendorid');
+        $vendor = vendor::where('id',$id)->first();
+        return view('vendor.create',compact('vendor'));
+    }else{
+        return view('vendor.index');
+    }
+});
 
 Route::get('/vendor/login',[vendorController::class,'loginpage'])->name('Vendorlogin');
+Route::get('/vendor/asik',[vendorController::class,'registerpage'])->name('metalmen');
+Route::post('/vendor',[vendorController::class,'CreateJasa'])->name('nambahjasa');
 Route::post('/vendor/login',[vendorController::class,'vendorlogin'])->name('vendorlog');
 Route::post('/vendor/asik',[vendorController::class,'vendorregister'])->name('vendorregis');
-Route::get('/vendor/asik',[vendorController::class,'registerpage'])->name('metalmen');
+// Route::get('/vendor/{$vendor}/create','vendorController@createjasa');
 
 //For Profile
 Route::get('/profile',function(){

@@ -8,7 +8,7 @@
         <div class="container mt-3">
             @if (count($jasa) >= 1)
             <div class="row row-cols-1 row-cols-md-1 g-4">
-                <a class="btn btn-primary mt-3" href="" role="button">Tambah Jasa</a>
+                <a class="btn btn-primary mt-3" href="/vendor/create" role="button">Tambah Jasa</a>
                 @foreach ($data as $jasa)
                     <div class="col">
                         <div id="card1" class="card mb-3" style="max-width: 540px;">
@@ -30,7 +30,7 @@
             @else       
                 <div class="text-center">
                     <div class="text-secondary">There is no data....</div>
-                    <a class="btn btn-primary mt-3" href="/patient/listVaccine" role="button">Tambah Jasa</a>
+                    <a class="btn btn-primary mt-3" href="/vendor/create" role="button">Tambah Jasa</a>
                 </div> 
             @endif
             </div>
