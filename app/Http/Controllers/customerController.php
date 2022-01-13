@@ -54,10 +54,24 @@ class customerController extends Controller
         }
     }
 
-    public function profile(){
-        return view('profile');
-    }
+    // public function edit($id){
+    //     $cust = customer::find($id);
+    //     return view('user.profile',compact('cust'));
+    // }
 
+    public function update(Request $request){
+        $id = $request->id;
+        // $cust = customer::where('id',$id)->first();
+        customer::find($id)->update([
+            'nama'=> $request->name,
+            'username'=> $request->username,
+            'email'=> $request->email,
+            'noHp'=> $request->nomor,
+            'alamat'=> $request->alamat,
+            'password'=>$request->password,
+        ]);
+        return redirect('/profile')->with('BerhasilUpdate','Berhasil Update');
+    }
     // public function editprofil(){
 
     // }

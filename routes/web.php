@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\customerController;
 use Illuminate\Support\Facades\Route;
+use App\Models\customer;
+use App\Models\kategori;
+use App\Models\vendor;
+use App\Models\transaksi;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,29 +19,33 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('data');
+    if (session('login')){
+        $id = session('id');
+        $cust = customer::where('id',$id)->first();
+        return view('data',compact('cust'));
+    }else{
+        return view('data');
+    }
 });
 
-// Route::get('/login', function () {
-//     return view('login');
-// });
 
-Route::get('/profile', function(){
-    return view('');
+//For Profile
+Route::get('/profile',function(){
+    if (session('login')){ 
+        $id = session('id');
+        $cust = customer::where('id',$id)->first();
+        return view('user.profile',compact('cust'));
+    }else{
+        return view('data');
+    }
 });
+// Route::get('/profile/{cust}/edit','customerController@edit');
+Route::post('/profile',[customerController::class,'update'])->name('update');
 
+
+//For Login and Register Page
 Route::get('registerpage',[customerController::class,'registerpage'])->name('registerpage');
 Route::post('register',[customerController::class,'register'])->name('register');
 Route::get('login', [customerController::class,'loginpage'])->name('loginpage');
 Route::post('login',[customerController::class,'login'])->name('login');
 Route::get('logout',[customerController::class,'logout'])->name('Logout');
-Route::get('profile',[customerController::class,'profile'])->name('profile');
-Route::post('editprofile',[customerController::class,'editprofile'])->name('edit');
-// Route::resource('register', registercontroller::class);
-// Route::post('login', [App\Http\Controllers\login_controller::class,'login'])->name('login');
-// Route::resource('/regis', customerController::class);
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
-
-// require __DIR__.'/auth.php';
