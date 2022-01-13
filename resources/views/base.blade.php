@@ -11,9 +11,6 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('fonts/icomoon/style.css') }}" />
 
-    <!-- Bootstrap CSS -->
-    {{-- <link rel="stylesheet" href="css/bootstrap.min.css" /> --}}
-
     <!-- Style CSS -->
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}" />
     <title>POTRETIN</title>
