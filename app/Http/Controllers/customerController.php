@@ -57,11 +57,6 @@ class customerController extends Controller
         }
     }
 
-    // public function edit($id){
-    //     $cust = customer::find($id);
-    //     return view('user.profile',compact('cust'));
-    // }
-
     public function update(Request $request){
         $id = $request->id;
         // $cust = customer::where('id',$id)->first();
@@ -85,6 +80,8 @@ class customerController extends Controller
             'idCust'=>$request->customer,
             'idJasa'=>$request->jasa,
             'status'=>$request->status,
+            'harga'=>$request->harga,
         ]);
+        return redirect('/cart')->with('Add','Berhasil dipesan');
     }
 }

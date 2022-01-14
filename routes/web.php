@@ -34,6 +34,12 @@ Route::get('/', function () {
     }
 });
 
+
+Route::get('/cart',function(){
+    $transaksi = transaksi::all();
+    return view('cart',compact('transaksi'));
+});
+
 Route::get('/vendor',function(){
     if (session('vendor')){
         $id = session('vendorid');
@@ -62,7 +68,7 @@ Route::get('/vendor/create',function(){
     }
 });
 
-
+Route::get('/vendor/status/',[vendorController::class,'status'])->name('status');
 Route::get('Vlogout',[vendorController::class,'Vlogout'])->name('Vlogout');
 Route::get('/vendor/{jasa}',[vendorController::class,'viewJasa']);
 Route::post('/vendor',[vendorController::class,'CreateJasa'])->name('nambahjasa');
@@ -82,9 +88,13 @@ Route::get('/profile',function(){
     }
 });
 Route::post('/profile',[customerController::class,'update'])->name('update');
-
 Route::get('/choose/{cust}/{jasa}',[customerController::class,'choosevendor']);
 Route::post('/transaksi',[customerController::class,'CreateTransaction'])->name('create');
+
+Route::get('/vendor/status/',function(){
+    $transaksi = transaksi::all();
+    return view('vendor.status',compact('transaksi'));
+});
 //For Login and Register Page
 Route::get('registerpage',[customerController::class,'registerpage'])->name('registerpage');
 Route::post('register',[customerController::class,'register'])->name('register');

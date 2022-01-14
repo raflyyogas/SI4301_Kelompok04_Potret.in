@@ -103,10 +103,10 @@
     <div class="container text-center">
         <h3>Detail Package</h3>
         <p>Fotografi </p>
-        <form class="mb-5"method="POST" enctype="multipart/form-data" action="">
+        <form class="mb-5"method="POST" enctype="multipart/form-data" action="{{ route('create') }}">
             @csrf
             <div class="mb-3" hidden>
-                <label for="exampleFormControlInput1" class="form-label">id Customer</label>
+                <label for="exampleFormControlInput1" class="form-label">ID Customer</label>
                 <input type="number" class="form-control" id="exampleFormControlInput1" name="customer" value="{{ $cust->id }}" readonly>
             </div>
             <div class="mb-3" hidden>
@@ -116,6 +116,10 @@
             <div class="mb-3" hidden>
                 <label for="exampleFormControlInput1" class="form-label">Status</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1" name="status" value="Menunggu Pembayaran">
+            </div>
+            <div class="mb-3" hidden>
+                <label for="exampleFormControlInput1" class="form-label">Harga</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="harga" value="{{ $jasa->harga }}">
             </div>
             <div class="d-grid gap-2 col-3 mx-auto">
                 <b><td>Rp {{ number_format($jasa->harga, 0, ",", ".") }}</td></b>

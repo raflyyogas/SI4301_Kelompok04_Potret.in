@@ -14,5 +14,6 @@ class transaksi extends Model
         'idCust',
         'idJasa',
         'status',
+        'harga',
     ];
 }
