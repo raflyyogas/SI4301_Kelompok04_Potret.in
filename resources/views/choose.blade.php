@@ -103,8 +103,9 @@
     <div class="container text-center">
         <h3>Detail Package</h3>
         <p>Fotografi </p>
-        <form method="POST" enctype="multipart/form-data" action="{{ route('create') }}">
-            @csrf<div class="mb-3">
+        <form method="POST" enctype="multipart/form-data" action="">
+            @csrf
+            <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">id Customer</label>
                 <input type="number" class="form-control" id="exampleFormControlInput1" name="customer" value="{{ $cust->id }}" readonly>
             </div>
