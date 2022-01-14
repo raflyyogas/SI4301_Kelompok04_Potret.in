@@ -9,4 +9,10 @@ class transaksi extends Model
 {
     protected $table = 'transaksi';
     use HasFactory;
+    
+    protected $fillable = [
+        'idCust',
+        'idJasa',
+        'status',
+    ];
 }

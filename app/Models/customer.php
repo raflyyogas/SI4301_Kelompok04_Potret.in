@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class customer extends Model
 {
     protected $table = 'customer';
+
+    public function jasa(){
+        return $this->belongsToMany('App\Models\jasa');
+    }
+
     use HasFactory;
 
     protected $primaryKey = 'id';

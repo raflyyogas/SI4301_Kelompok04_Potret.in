@@ -103,12 +103,28 @@
     <div class="container text-center">
         <h3>Detail Package</h3>
         <p>Fotografi </p>
-        <b><td>Rp {{ number_format($jasa->harga, 0, ",", ".") }}</td></b>
-        <button type="button" class="btn btn-warning">Pesan</button>
-        <br>
-        <br>
-        <br>
-        <br>
+        <form method="POST" enctype="multipart/form-data" action="{{ route('create') }}">
+            @csrf<div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">id Customer</label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" name="customer" value="{{ $cust->id }}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">ID Jasa</label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" name="jasa" value="{{ $jasat->id }}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Status</label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" name="status" value="Menunggu Pembayaran">
+            </div>
+            <div class="d-grid gap-2 col-3 mx-auto">
+                
+                <b><td>Rp {{ number_format($jasa->harga, 0, ",", ".") }}</td></b>
+                <button class="btn btn-warning" name="submit" type="submit">Pesan</button>
+            </div>
+        </form> 
+
+            
+        {{-- <button type="button" class="btn btn-warning">Pesan</button> --}}
     </div>
 
 @endsection

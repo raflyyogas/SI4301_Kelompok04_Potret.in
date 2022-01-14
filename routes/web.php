@@ -83,7 +83,8 @@ Route::get('/profile',function(){
 });
 Route::post('/profile',[customerController::class,'update'])->name('update');
 
-Route::get('/choose/{jasa}',[customerController::class,'choosevendor']);
+Route::get('/choose',[customerController::class,'choosevendor']);
+Route::post('/transaksi',[customerController::class,'CreateTransaction'])->name('create');
 //For Login and Register Page
 Route::get('registerpage',[customerController::class,'registerpage'])->name('registerpage');
 Route::post('register',[customerController::class,'register'])->name('register');

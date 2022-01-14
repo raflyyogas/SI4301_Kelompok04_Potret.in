@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\customer;
 use App\Models\vendor;
 use App\Models\jasa;
+use App\Models\transaksi;
 use Illuminate\Support\Facades\Auth;
 // use Illuminate\Http\Concerns\InteractsWithInput::post;
 
@@ -75,8 +76,16 @@ class customerController extends Controller
         return redirect('/profile')->with('BerhasilUpdate','Berhasil Update');
     }
     public function choosevendor($id){
-        $cust = customer::all();
+        $sessionId = session('id');
+        $cust = customer::where('id',$sessionId);
         $jasa = jasa::find($id);
         return view('choose',compact('cust','jasa'));
+    }
+    public function CreateTransaction(Request $request){
+        transaksi::create([
+            'idCust'=>$request->customer,
+            'idJasa'=>$request->jasa,
+            'status'=>$request->status,
+        ]);
     }
 }

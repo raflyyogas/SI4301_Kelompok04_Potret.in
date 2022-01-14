@@ -19,8 +19,6 @@ class CreateTransaksisTable extends Migration
             $table->foreign('idCust')->references('id')->on('customer')->onDelete('cascade');
             $table->foreignId('idJasa')->unsigned();
             $table->foreign('idJasa')->references('id')->on('jasa')->onDelete('cascade');
-            $table->foreignId('idVendor')->unsigned();
-            $table->foreign('idVendor')->references('id')->on('vendor')->onDelete('cascade');
             $table->string('status',255);
             $table->timestamps();
         });

@@ -33,6 +33,7 @@
                   </a>
               </li>
               @if (session('vendor'))
+              <a href="{{ route('Vlogout') }}" class="btn btn-warning me-3" type="button">Status</a>
               <a href="{{ route('Vlogout') }}" class="btn btn-danger" type="button">Keluar</a>
               @else
               @endif

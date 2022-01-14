@@ -42,7 +42,7 @@
                     <div class="d-grid gap-2 col-3 mx-auto">
                         <button class="btn btn-warning" name="submit" type="submit">ADD SERVICE +</button>
                     </div>
-            </form> 
+                </form> 
             </div>    
         </div>
 @endsection
