@@ -46,7 +46,7 @@
                         <p class="card-text">{{ $jasa->deskripsi }}</p>
                     </div>
                     <div class="card-footer">
-                        <a href="/choose/{{ $jasa->id }}" class="card-text btn btn-outline-primary">Choose Vendor</a>
+                        <a href="/choose/{{ $cust->id }}/{{ $jasa->id }}" class="card-text btn btn-outline-primary">Choose Vendor</a>
                     </div>
                 </div>
             </div>

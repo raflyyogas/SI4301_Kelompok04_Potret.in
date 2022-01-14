@@ -75,9 +75,9 @@ class customerController extends Controller
         ]);
         return redirect('/profile')->with('BerhasilUpdate','Berhasil Update');
     }
-    public function choosevendor($id){
-        $cust = customer::orderBy('id');
-        $jasa = jasa::find($id);
+    public function choosevendor($cust,$jasa){
+        $cust = customer::where('id',$cust)->first();
+        $jasa = jasa::find($jasa);
         return view('choose',compact('cust','jasa'));
     }
     public function CreateTransaction(Request $request){

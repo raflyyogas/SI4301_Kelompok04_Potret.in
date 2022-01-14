@@ -103,22 +103,21 @@
     <div class="container text-center">
         <h3>Detail Package</h3>
         <p>Fotografi </p>
-        <form method="POST" enctype="multipart/form-data" action="">
+        <form class="mb-5"method="POST" enctype="multipart/form-data" action="">
             @csrf
-            <div class="mb-3">
+            <div class="mb-3" hidden>
                 <label for="exampleFormControlInput1" class="form-label">id Customer</label>
                 <input type="number" class="form-control" id="exampleFormControlInput1" name="customer" value="{{ $cust->id }}" readonly>
             </div>
-            <div class="mb-3">
+            <div class="mb-3" hidden>
                 <label for="exampleFormControlInput1" class="form-label">ID Jasa</label>
-                <input type="number" class="form-control" id="exampleFormControlInput1" name="jasa" value="{{ $jasat->id }}" readonly>
+                <input type="number" class="form-control" id="exampleFormControlInput1" name="jasa" value="{{ $jasa->id }}" readonly>
             </div>
-            <div class="mb-3">
+            <div class="mb-3" hidden>
                 <label for="exampleFormControlInput1" class="form-label">Status</label>
-                <input type="number" class="form-control" id="exampleFormControlInput1" name="status" value="Menunggu Pembayaran">
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="status" value="Menunggu Pembayaran">
             </div>
             <div class="d-grid gap-2 col-3 mx-auto">
-                
                 <b><td>Rp {{ number_format($jasa->harga, 0, ",", ".") }}</td></b>
                 <button class="btn btn-warning" name="submit" type="submit">Pesan</button>
             </div>
