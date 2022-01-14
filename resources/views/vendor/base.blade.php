@@ -25,13 +25,17 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                  <a class="navbar-brand" href="#">
+                  <a class="navbar-brand" href="/vendor">
                     <img src="{{ asset('img/internal/POTRET.In.png') }}" alt="Logo Potret.in"class="d-inline-block align-text-top">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span> 
                     </button>
                   </a>
               </li>
+              @if (session('vendor'))
+              <a href="{{ route('Vlogout') }}" class="btn btn-danger" type="button">Keluar</a>
+              @else
+              @endif
           </div>
         </div>
     </nav>

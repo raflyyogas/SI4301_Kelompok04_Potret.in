@@ -18,6 +18,7 @@ class CreateVendorsTable extends Migration
             $table->string('namaVendor',255);
             $table->string('noHp',50);
             $table->string('email',255);
+            $table->string('password',255);
             $table->timestamps();
         });
     }

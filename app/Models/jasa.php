@@ -18,4 +18,14 @@ class jasa extends Model
     }
 
     use HasFactory;
+    
+    protected $fillable = [
+        'namaJasa',
+        'deskripsi',
+        'gambar',
+        'harga',
+        'lokasi',
+        'idVendor',
+        'idKategori',
+    ];
 }

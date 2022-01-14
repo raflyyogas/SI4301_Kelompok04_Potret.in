@@ -14,9 +14,6 @@ class vendorController extends Controller
     public function registerpage(){
         return view('vendor.register');
     }
-    public function loginpage(){
-        return view('vendor.login');
-    }
     public function vendorregister(Request $request){
         if ($request->password == $request->confpw ){
             vendor::create([
@@ -56,10 +53,20 @@ class vendorController extends Controller
             'gambar' => $Name,
             'harga' => $request -> harga,
             'lokasi' => $Name,
-            'vendor' => $request -> vendor,
-            'kategori' => $request -> kategori,
+            'idVendor' => $request -> vendor,
+            'idKategori' => $request -> kategori,
         ]);
 
         return redirect('/vendor');
+    }
+
+    public function viewJasa($id){
+        $jasa = jasa::find($id);
+        return view('vendor.view',compact('jasa'));
+    }
+
+    public function Vlogout(Request $request){
+        $request->session()->flush();
+        return redirect('/')->with('logout','Berhasil Logout');
     }
 }

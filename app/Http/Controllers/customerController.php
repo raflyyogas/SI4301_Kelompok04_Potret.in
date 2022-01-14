@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\customer;
+use App\Models\vendor;
+use App\Models\jasa;
 use Illuminate\Support\Facades\Auth;
 // use Illuminate\Http\Concerns\InteractsWithInput::post;
 
@@ -72,7 +74,9 @@ class customerController extends Controller
         ]);
         return redirect('/profile')->with('BerhasilUpdate','Berhasil Update');
     }
-    // public function editprofil(){
-
-    // }
+    public function choosevendor($id){
+        $cust = customer::all();
+        $jasa = jasa::find($id);
+        return view('choose',compact('cust','jasa'));
+    }
 }

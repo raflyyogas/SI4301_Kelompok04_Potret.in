@@ -25,8 +25,10 @@ use App\Models\transaksi;
 Route::get('/', function () {
     if (session('login')){
         $id = session('id');
+        $jasa = jasa::all();
+        $vendor = vendor::all();
         $cust = customer::where('id',$id)->first();
-        return view('data',compact('cust'));
+        return view('data',compact('cust','jasa','vendor'));
     }else{
         return view('data');
     }
@@ -43,22 +45,31 @@ Route::get('/vendor',function(){
     }
 });
 
+Route::get('/vendor/login',function(){
+    return view('vendor.login');
+});
+
+Route::get('/vendor/asik',[vendorController::class,'registerpage'])->name('metalmen');
+
 Route::get('/vendor/create',function(){
     if (session('vendor')){
         $id = session('vendorid');
+        $kategori = kategori::all();
         $vendor = vendor::where('id',$id)->first();
-        return view('vendor.create',compact('vendor'));
+        return view('vendor.create',compact('vendor','kategori'));
     }else{
         return view('vendor.index');
     }
 });
 
-Route::get('/vendor/login',[vendorController::class,'loginpage'])->name('Vendorlogin');
-Route::get('/vendor/asik',[vendorController::class,'registerpage'])->name('metalmen');
+
+Route::get('Vlogout',[vendorController::class,'Vlogout'])->name('Vlogout');
+Route::get('/vendor/{jasa}',[vendorController::class,'viewJasa']);
 Route::post('/vendor',[vendorController::class,'CreateJasa'])->name('nambahjasa');
 Route::post('/vendor/login',[vendorController::class,'vendorlogin'])->name('vendorlog');
 Route::post('/vendor/asik',[vendorController::class,'vendorregister'])->name('vendorregis');
-// Route::get('/vendor/{$vendor}/create','vendorController@createjasa');
+
+
 
 //For Profile
 Route::get('/profile',function(){
@@ -72,6 +83,7 @@ Route::get('/profile',function(){
 });
 Route::post('/profile',[customerController::class,'update'])->name('update');
 
+Route::get('/choose/{jasa}',[customerController::class,'choosevendor']);
 //For Login and Register Page
 Route::get('registerpage',[customerController::class,'registerpage'])->name('registerpage');
 Route::post('register',[customerController::class,'register'])->name('register');

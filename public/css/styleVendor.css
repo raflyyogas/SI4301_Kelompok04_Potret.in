@@ -97,12 +97,6 @@ img {
     }
 }
 
-/* CAROUSEL STYLES */
-.carousel-container,
-input {
-    display: none;
-}
-
 @media screen and (-webkit-min-device-pixel-ratio: 0),
     screen and (min--moz-device-pixel-ratio: 0) {
     @supports (color: #ffffff) {
