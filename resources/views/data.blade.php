@@ -40,7 +40,7 @@
           <div class="col">
             <div class="card-group">
                 <div class="card">
-                    <img src="{{ asset('img/imgvendor/'.$jasa->gambar) }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('img/imgvendor/'.$jasa->gambar) }}" class="card-img-top" alt="Gambar Vendor">
                     <div class="card-body">
                         <h5 class="card-title">{{ $jasa->namaJasa }}</h5>
                         <p class="card-text">{{ $jasa->deskripsi }}</p>

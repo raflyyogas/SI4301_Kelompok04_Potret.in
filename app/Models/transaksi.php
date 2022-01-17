@@ -11,9 +11,11 @@ class transaksi extends Model
     use HasFactory;
     
     protected $fillable = [
+        'id',
         'idCust',
         'idJasa',
         'status',
         'harga',
+        'bukti_pembayaran',
     ];
 }

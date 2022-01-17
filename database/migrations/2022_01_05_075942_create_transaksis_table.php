@@ -20,6 +20,7 @@ class CreateTransaksisTable extends Migration
             $table->foreignId('idJasa')->unsigned();
             $table->foreign('idJasa')->references('id')->on('jasa')->onDelete('cascade');
             $table->string('status',255);
+            $table->integer('harga',255);
             $table->timestamps();
         });
     }

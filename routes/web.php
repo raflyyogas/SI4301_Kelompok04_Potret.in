@@ -2,8 +2,6 @@
 
 use App\Http\Controllers\customerController;
 use App\Http\Controllers\vendorController;
-use App\Http\Controllers\jasaController;
-use App\Http\Controllers\transaksiController;
 use Illuminate\Support\Facades\Route;
 use App\Models\customer;
 use App\Models\jasa;
@@ -35,9 +33,40 @@ Route::get('/', function () {
 });
 
 
-Route::get('/cart',function(){
+//For Login and Register Page
+Route::get('registerpage',[customerController::class,'registerpage'])->name('registerpage');
+Route::post('register',[customerController::class,'register'])->name('register');
+Route::get('login', [customerController::class,'loginpage'])->name('loginpage');
+Route::post('login',[customerController::class,'login'])->name('login');
+Route::get('logout',[customerController::class,'logout'])->name('Logout');
+
+Route::get('/profile',function(){
+    if (session('login')){ 
+        $id = session('id');
+        $cust = customer::where('id',$id)->first();
+        return view('user.profile',compact('cust'));
+    }else{
+        return redirect('/');
+    }
+});
+Route::post('/profile',[customerController::class,'update'])->name('update');
+Route::get('/choose/{cust}/{jasa}',[customerController::class,'choosevendor']);
+Route::get('/cart/upload/{transaksi}',[customerController::class,'bukti']);
+Route::post('/cart',[customerController::class,'upload'])->name('uploadbukti');
+Route::post('/transaksi',[customerController::class,'CreateTransaction'])->name('create');
+Route::get('/cart', function () {
+    if (session('login')){
+        $cust = session('id');
+        $transaksi = transaksi::where('idCust',$cust)->get();
+        return view('cart',compact('transaksi'));
+    }else{
+        return redirect('/');
+    }
+});
+
+Route::get('/vendor/status',function(){
     $transaksi = transaksi::all();
-    return view('cart',compact('transaksi'));
+    return view('vendor.status',compact('transaksi'));
 });
 
 Route::get('/vendor',function(){
@@ -68,36 +97,15 @@ Route::get('/vendor/create',function(){
     }
 });
 
-Route::get('/vendor/status/',[vendorController::class,'status'])->name('status');
 Route::get('Vlogout',[vendorController::class,'Vlogout'])->name('Vlogout');
 Route::get('/vendor/{jasa}',[vendorController::class,'viewJasa']);
-Route::post('/vendor',[vendorController::class,'CreateJasa'])->name('nambahjasa');
-Route::post('/vendor/login',[vendorController::class,'vendorlogin'])->name('vendorlog');
-Route::post('/vendor/asik',[vendorController::class,'vendorregister'])->name('vendorregis');
-
-
-
-//For Profile
-Route::get('/profile',function(){
-    if (session('login')){ 
-        $id = session('id');
-        $cust = customer::where('id',$id)->first();
-        return view('user.profile',compact('cust'));
-    }else{
-        return view('data');
-    }
-});
-Route::post('/profile',[customerController::class,'update'])->name('update');
-Route::get('/choose/{cust}/{jasa}',[customerController::class,'choosevendor']);
-Route::post('/transaksi',[customerController::class,'CreateTransaction'])->name('create');
-
 Route::get('/vendor/status/',function(){
     $transaksi = transaksi::all();
     return view('vendor.status',compact('transaksi'));
 });
-//For Login and Register Page
-Route::get('registerpage',[customerController::class,'registerpage'])->name('registerpage');
-Route::post('register',[customerController::class,'register'])->name('register');
-Route::get('login', [customerController::class,'loginpage'])->name('loginpage');
-Route::post('login',[customerController::class,'login'])->name('login');
-Route::get('logout',[customerController::class,'logout'])->name('Logout');
+Route::get('/vendor/status/edit/{transaksi}',[vendorController::class,'editstatus']);
+Route::post('/vendor/status',[vendorController::class,'uploadstatus'])->name('EditStatus');
+
+Route::post('/vendor',[vendorController::class,'CreateJasa'])->name('nambahjasa');
+Route::post('/vendor/login',[vendorController::class,'vendorlogin'])->name('vendorlog');
+Route::post('/vendor/asik',[vendorController::class,'vendorregister'])->name('vendorregis');

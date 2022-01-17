@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2022 at 05:11 AM
+-- Generation Time: Jan 17, 2022 at 07:35 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -44,7 +44,8 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id`, `username`, `email`, `password`, `nama`, `noHp`, `alamat`, `created_at`, `updated_at`) VALUES
-(1, 'raflyyogas', 'raflyyogaswara48@gmail.com', '123', 'Rafly Yogaswara', '085939016869', 'Jakarta', '2022-01-13 20:10:50', '2022-01-13 20:10:50');
+(1, 'raflyyogas', 'raflyyogaswara48@gmail.com', '123', 'Rafly Yogaswara', '085939016869', 'Jakarta', '2022-01-13 20:10:50', '2022-01-13 20:10:50'),
+(2, 'yogas', 'Ayana3RR0R@gmail.com', '321', 'rafly', '085718824092', 'Jakarta', '2022-01-14 00:11:28', '2022-01-14 00:12:27');
 
 -- --------------------------------------------------------
 
@@ -70,8 +71,9 @@ CREATE TABLE `jasa` (
 --
 
 INSERT INTO `jasa` (`id`, `namaJasa`, `deskripsi`, `gambar`, `harga`, `lokasi`, `idVendor`, `idKategori`, `created_at`, `updated_at`) VALUES
-(1, 'Dukun Digital', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt tempore, excepturi perferendis deleniti architecto necessitatibus corrupti vel at consectetur ut.', 'fotografi.jpg-1642129646.jpg', '2000000', 'fotografi.jpg-1642129646.jpg', 1, 1, '2022-01-13 20:07:26', '2022-01-13 20:07:26'),
-(2, 'Videografi', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt tempore, excepturi perferendis deleniti architecto necessitatibus corrupti vel at consectetur ut.', 'user.png-1642129734.png', '750000', 'user.png-1642129734.png', 1, 2, '2022-01-13 20:08:54', '2022-01-13 20:08:54');
+(1, 'Fotografi', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt tempore, excepturi perferendis deleniti architecto necessitatibus corrupti vel at consectetur ut.', 'fotografi.jpg-1642129646.jpg', '2000000', 'fotografi.jpg-1642129646.jpg', 1, 1, '2022-01-13 20:07:26', '2022-01-13 20:07:26'),
+(2, 'Videografi', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt tempore, excepturi perferendis deleniti architecto necessitatibus corrupti vel at consectetur ut.', 'user.png-1642129734.png', '750000', 'user.png-1642129734.png', 1, 2, '2022-01-13 20:08:54', '2022-01-13 20:08:54'),
+(3, 'Ical Fotografi', 'Terbaik', 'fotografi.jpg-1642144425.jpg', '860000', 'fotografi.jpg-1642144425.jpg', 1, 1, '2022-01-14 00:13:45', '2022-01-14 00:13:45');
 
 -- --------------------------------------------------------
 
@@ -147,9 +149,21 @@ CREATE TABLE `transaksi` (
   `idCust` bigint(20) UNSIGNED NOT NULL,
   `idJasa` bigint(20) UNSIGNED NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `harga` int(50) NOT NULL,
+  `bukti_pembayaran` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id`, `idCust`, `idJasa`, `status`, `harga`, `bukti_pembayaran`, `created_at`, `updated_at`) VALUES
+(3, 1, 1, 'Pembayaran Berhasil', 2000000, 'Screenshot_10.png-1642408739.png', '2022-01-13 23:43:45', '2022-01-17 11:25:50'),
+(4, 1, 1, 'Menunggu Pembayaran', 2000000, NULL, '2022-01-13 23:44:56', '2022-01-13 23:44:56'),
+(5, 2, 1, 'Menunggu Pembayaran', 2000000, NULL, '2022-01-14 00:12:03', '2022-01-14 00:12:03'),
+(6, 2, 1, 'Menunggu Pembayaran', 2000000, NULL, '2022-01-16 06:01:19', '2022-01-16 06:01:19');
 
 -- --------------------------------------------------------
 
@@ -172,7 +186,8 @@ CREATE TABLE `vendor` (
 --
 
 INSERT INTO `vendor` (`id`, `namaVendor`, `noHp`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'raflyyogaswara48@gmail.com', '085939016869', 'raflyyogas@gmail.com', '123', '2022-01-13 20:04:22', '2022-01-13 20:04:22');
+(1, 'raflyyogaswara48@gmail.com', '085939016869', 'raflyyogas@gmail.com', '123', '2022-01-13 20:04:22', '2022-01-13 20:04:22'),
+(2, 'Dukun Digital', '085718824092', 'Ayana3RR0R@gmail.com', '123', '2022-01-14 00:15:03', '2022-01-14 00:15:03');
 
 --
 -- Indexes for dumped tables
@@ -235,13 +250,13 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `jasa`
 --
 ALTER TABLE `jasa`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -265,13 +280,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `vendor`
 --
 ALTER TABLE `vendor`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

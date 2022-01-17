@@ -2,44 +2,67 @@
 @section('content')
     @if (count($transaksi)>=1)
         <div class="container mt-5">
-            <div class="shadow p-3 mb-5 bg-body rounded">
-            <h3 class="dataService"><b>Edit Status</b></h3>
-                <form method="POST" action="">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">ID Transaksi</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="idjasa" value="{{ $transaksi->id }}" readonly="readonly">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">ID Customer</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="idcust" value="" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Harga</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="harga" value="" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Gambar</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="bukti_pembayaran">
-                        </div>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput2"><b>Status</b></label>
-                            <select class="form-select" name="progress" aria-label="Default select example">
-                                <option>Akan Diproses</option>
-                                <option>Sedang Diproses</option>
-                                <option>Selesai</option>
-                            </select>
-                        </div>
-                        <div class="d-grid gap-2 mt-4 col-3 mx-auto">
-                            <button class="btn btn-warning" name="submit" type="submit">EDIT</button>
-                        </div>
-                </form> 
-            </div>    
+            <div class="d-flex justify-content-center row">
+            <div class="col-md-10">
+                <div class="rounded">
+                    
+                @if (session('Succeed'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ (session('Succeed')) }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+                <div class="table-responsive table-borderless">
+                    <table class="table">
+                    <thead>
+                        <tr>
+                        <th>Order Id</th>
+                        <th>ID Jasa</th>
+                        <th>ID Cust</th>
+                        <th>Status</th>
+                        <th>Bukti Pembayaran</th>
+                        <th>Total Harga</th>
+                        <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-body">
+                        @foreach($transaksi as $transaksi)
+                            <tr>
+                            <td>{{ $transaksi->id }}</td>
+                            <td>{{ $transaksi->idJasa }}</td>
+                            <td>{{ $transaksi->idCust }}</td>
+                            <td>{{ $transaksi->status }}</td>
+                            <td> 
+                                @if ($transaksi->bukti_pembayaran == 'NULL')
+                                    Tidak ada pembayaran
+                                @else
+                                    <img src="{{ asset('img/buktipembayaran/'.$transaksi->bukti_pembayaran) }}" alt="Gambar Vendor">
+                                @endif
+                            </td>
+                            <b><td>Rp {{ number_format($transaksi->harga, 0, ",", ".") }}</td></b>
+                            <td>
+                                @if ($transaksi->status == 'Pembayaran Berhasil')
+                                    <a href="" class="btn btn-success" role="button">Pembayaran Berhasil</a>
+                                @elseif ($transaksi->status == 'Menunggu Pembayaran')
+                                    <a href="" class="btn btn-warning" role="button">Menunggu Pembayaran</a>
+                                @elseif ($transaksi->status == 'Menunggu Konfirmasi')
+                                    <a href="/vendor/status/edit/{{ $transaksi->id }}" class="btn btn-danger" role="button">Edit Status</a>
+                                @endif
+                            </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    </table>
+
+                    <br><br><br><br>
+                </div>
+                </div>
+            </div>
+            </div>
         </div>
     @else
-        <div class="container">
-            <div class="text-center">Data Not found</div>
-        </div>
+        <div class="container p-5 mx-auto text-center text-black">No Data</div>
+        <br><br><br><br><br>
     @endif
 @endsection
 

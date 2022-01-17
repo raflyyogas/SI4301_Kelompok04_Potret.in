@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\vendor;
 use App\Models\jasa;
+use App\Models\transaksi;
 
 class vendorController extends Controller
 {
@@ -52,7 +53,7 @@ class vendorController extends Controller
             'deskripsi' => $request -> deskripsi,
             'gambar' => $Name,
             'harga' => $request -> harga,
-            'lokasi' => $Name,
+            'lokasi' => $request -> lokasi,
             'idVendor' => $request -> vendor,
             'idKategori' => $request -> kategori,
         ]);
@@ -68,5 +69,20 @@ class vendorController extends Controller
     public function Vlogout(Request $request){
         $request->session()->flush();
         return redirect('/')->with('logout','Berhasil Logout');
+    }
+
+    public function editstatus($transaksi){
+        $transaksi = transaksi::where('id',$transaksi)->first();
+        return view('vendor.editstatus',compact('transaksi'));
+    }
+
+    public function uploadstatus(Request $request){
+        $id = $request->idtransaksi;
+        transaksi::find($id)->update([
+            'idCust'=> $request->idcust,
+            'harga'=> $request->harga,
+            'status'=> $request->status,
+        ]);
+        return redirect('/vendor/status')->with('Succeed','Berhasil mengubah bukti');
     }
 }

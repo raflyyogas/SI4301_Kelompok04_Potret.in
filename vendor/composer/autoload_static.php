@@ -534,8 +534,6 @@ class ComposerStaticInitd9f194907bfa45802d6009a1f1c37f3b
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\customerController' => __DIR__ . '/../..' . '/app/Http/Controllers/customerController.php',
         'App\\Http\\Controllers\\jasaController' => __DIR__ . '/../..' . '/app/Http/Controllers/jasaController.php',
-        'App\\Http\\Controllers\\kategoriController' => __DIR__ . '/../..' . '/app/Http/Controllers/kategoriController.php',
-        'App\\Http\\Controllers\\transaksiController' => __DIR__ . '/../..' . '/app/Http/Controllers/transaksiController.php',
         'App\\Http\\Controllers\\vendorController' => __DIR__ . '/../..' . '/app/Http/Controllers/vendorController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',

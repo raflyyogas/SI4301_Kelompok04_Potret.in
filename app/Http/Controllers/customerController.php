@@ -59,7 +59,6 @@ class customerController extends Controller
 
     public function update(Request $request){
         $id = $request->id;
-        // $cust = customer::where('id',$id)->first();
         customer::find($id)->update([
             'nama'=> $request->name,
             'username'=> $request->username,
@@ -82,6 +81,26 @@ class customerController extends Controller
             'status'=>$request->status,
             'harga'=>$request->harga,
         ]);
-        return redirect('/cart')->with('Add','Berhasil dipesan');
+        return redirect('/')->with('Add','Berhasil dipesan');
+    }
+
+    public function bukti($transaksi){
+        $transaksi = transaksi::where('id',$transaksi)->first();
+        return view('bukti',compact('transaksi'));
+    }
+
+    public function upload(Request $request){
+        $Name = $request->image->getClientOriginalName() . '-' . time()
+        . '.' . $request->image->extension();
+        $request->image->move(public_path('img/buktipembayaran'),$Name);
+        
+        $id = $request->id;
+        transaksi::find($id)->update([
+            'harga'=> $request->harga,
+            'status'=> $request->status,
+            'bukti_pembayaran'=> $Name,
+        ]);
+
+        return redirect('/cart')->with('bukti','Berhasil Mengirim bukti pembayaran');
     }
 }

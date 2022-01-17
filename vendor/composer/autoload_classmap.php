@@ -19,8 +19,6 @@ return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\customerController' => $baseDir . '/app/Http/Controllers/customerController.php',
     'App\\Http\\Controllers\\jasaController' => $baseDir . '/app/Http/Controllers/jasaController.php',
-    'App\\Http\\Controllers\\kategoriController' => $baseDir . '/app/Http/Controllers/kategoriController.php',
-    'App\\Http\\Controllers\\transaksiController' => $baseDir . '/app/Http/Controllers/transaksiController.php',
     'App\\Http\\Controllers\\vendorController' => $baseDir . '/app/Http/Controllers/vendorController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
